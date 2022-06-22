@@ -10,6 +10,9 @@ const Header = () => {
   const signoutHandler = () => {
     contextDispatch({ type: "SIGN_OUT" });
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+    localStorage.removeItem("cartItems");
   };
   return (
     <header className="sticky-top">

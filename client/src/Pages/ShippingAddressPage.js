@@ -1,18 +1,31 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../store";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 const ShippingAddressPage = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
+  const {
+    userInfo,
+    cart: { shippingAddress },
+  } = state;
   const navigate = useNavigate();
 
-  const [address, setAddress] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const [address, setAddress] = useState(shippingAddress.address || "");
+  const [fullName, setFullName] = useState(shippingAddress.fullName || "");
+  const [city, setCity] = useState(shippingAddress.city || "");
+  const [country, setCountry] = useState(shippingAddress.country || "");
+  const [postalCode, setPostalCode] = useState(
+    shippingAddress.postalCode || ""
+  );
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/signin?redirect=/shipping");
+    }
+  }, [navigate, userInfo]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -45,6 +58,7 @@ const ShippingAddressPage = () => {
       </Helmet>
 
       <h1>Shipping Details</h1>
+      <CheckoutSteps step1 step2 />
       <Container>
         <Form onSubmit={submitHandler}>
           <Form.Group>
