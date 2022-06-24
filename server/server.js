@@ -3,6 +3,7 @@ const cors = require("cors");
 const seedRouter = require("./routes/seedRoute.js");
 const productRouter = require("./routes/productRoutes.js");
 const userRouter = require("./routes/userRoutes.js");
+const orderRouter = require("./routes/orderRoutes.js");
 
 const connectDB = require("./config/db.js");
 
@@ -19,6 +20,7 @@ app.use(
 app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
