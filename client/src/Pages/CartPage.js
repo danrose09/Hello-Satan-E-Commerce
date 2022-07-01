@@ -49,7 +49,7 @@ const CartPage = () => {
             <ListGroup>
               {cartItems.map((item) => {
                 return (
-                  <ListGroup.Item id={item._id}>
+                  <ListGroup.Item id={item._id} key={item._id}>
                     <Row>
                       <Col>
                         <Image src={item.image} />

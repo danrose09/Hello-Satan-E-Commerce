@@ -37,7 +37,7 @@ const HomePage = () => {
   }, []);
 
   const productList = products.map((product) => {
-    return <Product {...product} key={product.id} />;
+    return <Product {...product} key={product._id} />;
   });
 
   return (

@@ -12,6 +12,7 @@ import SignUpPage from "./Pages/SignUpPage";
 import SelectPaymentMethodPage from "./Pages/SelectPaymentMethodPage";
 import PlaceOrderPage from "./Pages/PlaceOrderPage";
 import OrderPage from "./Pages/OrderPage";
+import OrderHistoryPage from "./Pages/OrderHistoryPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/payment" element={<SelectPaymentMethodPage />}></Route>
         <Route path="/placeorder" element={<PlaceOrderPage />}></Route>
         <Route path="/order/:id" element={<OrderPage />}></Route>
+        <Route path="/orders/history" element={<OrderHistoryPage />}></Route>
       </Routes>
     </div>
   );

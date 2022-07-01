@@ -19,24 +19,25 @@ const Header = () => {
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="/">HELLO SATAN</Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown"> */}
+              <Nav.Link href="/cart">
+                <Cart />
+              </Nav.Link>
+
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                   {" "}
                   <NavDropdown.Item href="#action/3.1">
                     User Profile
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
+                  <NavDropdown.Item href="/orders/history">
                     Order History
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#">Something</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4" onClick={signoutHandler}>
                     Sign Out
@@ -49,7 +50,6 @@ const Header = () => {
               )}
             </Nav>
           </Navbar.Collapse>
-          <Cart />
         </Container>
       </Navbar>
     </header>
