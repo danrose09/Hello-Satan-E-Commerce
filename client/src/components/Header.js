@@ -31,7 +31,7 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                   {" "}
-                  <NavDropdown.Item href="#action/3.1">
+                  <NavDropdown.Item href="/profile">
                     User Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item href="/orders/history">
@@ -39,7 +39,7 @@ const Header = () => {
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#">Something</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4" onClick={signoutHandler}>
+                  <NavDropdown.Item href="/signin" onClick={signoutHandler}>
                     Sign Out
                   </NavDropdown.Item>
                 </NavDropdown>
