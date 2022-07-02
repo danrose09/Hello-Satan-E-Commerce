@@ -1,5 +1,4 @@
 import "./App.css";
-
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import ShopPage from "./Pages/ShopPage";
@@ -7,6 +6,7 @@ import ProductPage from "./Pages/ProductPage";
 import CartPage from "./Pages/CartPage";
 import SignInPage from "./Pages/SignInPage";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import ShippingAddressPage from "./Pages/ShippingAddressPage";
 import SignUpPage from "./Pages/SignUpPage";
 import SelectPaymentMethodPage from "./Pages/SelectPaymentMethodPage";
@@ -33,6 +33,7 @@ function App() {
         <Route path="/orders/history" element={<OrderHistoryPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

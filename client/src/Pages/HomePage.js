@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import Product from "../components/Product";
 
@@ -37,19 +37,24 @@ const HomePage = () => {
   }, []);
 
   const productList = products.map((product) => {
-    return <Product {...product} key={product._id} />;
+    return (
+      <Col sm={6} md={3}>
+        <Product {...product} key={product._id} />
+      </Col>
+    );
   });
 
   return (
     <div>
-      HomePage
-      {loading ? (
-        <Spinner animation="border"></Spinner>
-      ) : error ? (
-        <div>{error}</div>
-      ) : (
-        productList
-      )}
+      <Container>
+        {loading ? (
+          <Spinner animation="border"></Spinner>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          <Row>{productList}</Row>
+        )}
+      </Container>
     </div>
   );
 };

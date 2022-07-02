@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Row, Col, Image, Button } from "react-bootstrap";
+import { Row, Col, Image, Button, Card } from "react-bootstrap";
 import { Store } from "../store";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
+  const navigate = useNavigate();
   const { state, dispatch: contextDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -26,38 +28,31 @@ const Product = (props) => {
   };
 
   return (
-    <div>
-      <Row>
-        <Col>
-          <Image src={props.image} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h2>{props.name}</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h2>{props.price}</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h2>{props.description}</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {props.countInStock === 0 ? (
-            <Button variant="light" disabled>
-              Out of Stock
-            </Button>
-          ) : (
-            <Button onClick={() => addToCart(props)}>ADD TO CART</Button>
-          )}
-        </Col>
-      </Row>
+    <div className="mt-3 mb-3">
+      <Card
+        className="product__card"
+        onClick={() => navigate(`/product/${props.slug}`)}
+        border="light"
+      >
+        <Card.Body>
+          <Card.Img src={props.image}></Card.Img>
+          <Card.Text>
+            <p>{props.name}</p>
+            <strong>
+              <p>${props.price}</p>
+            </strong>
+          </Card.Text>
+          <Col>
+            {props.countInStock === 0 ? (
+              <Button variant="light" disabled>
+                Out of Stock
+              </Button>
+            ) : (
+              <Button onClick={() => addToCart(props)}>ADD TO CART</Button>
+            )}
+          </Col>
+        </Card.Body>
+      </Card>
     </div>
   );
 };

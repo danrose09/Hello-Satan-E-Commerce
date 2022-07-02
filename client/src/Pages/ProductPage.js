@@ -1,9 +1,18 @@
 import React, { useReducer, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Spinner, Image, Button } from "react-bootstrap";
+import {
+  Spinner,
+  Image,
+  Button,
+  Col,
+  Row,
+  Card,
+  Container,
+} from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { Store } from "../store";
 import axios from "axios";
+import CardHeader from "react-bootstrap/esm/CardHeader";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -65,9 +74,10 @@ const ProductPage = () => {
 
   return (
     <div>
-      <h1>ProductPage</h1>
       {loading ? (
-        <Spinner animation="border" />
+        <div>
+          <Spinner animation="border" />
+        </div>
       ) : error ? (
         <div>{error.message}</div>
       ) : (
@@ -75,13 +85,29 @@ const ProductPage = () => {
           <Helmet>
             <title>{product.name}</title>
           </Helmet>
-          <h2>Name: {product.name} </h2>
-          <Image src={product.image} />
-          <p>{product.price}</p>
-          <p>{product.description}</p>
+          <Container>
+            <Row>
+              <Col className="mt-5" md={8}>
+                <Image src={product.image} />
+              </Col>
+              <Col className="mt-5" md={4}>
+                <Card>
+                  <Card.Title className="px-3">{product.name}</Card.Title>
+                  <Card.Body>
+                    <Card.Text>
+                      <p>{product.description}</p>
+                      <strong>
+                        <p>{product.price}</p>
+                      </strong>
+                    </Card.Text>
+                    <Button onClick={() => addToCart()}>ADD TO CART</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
         </div>
       )}
-      <Button onClick={() => addToCart()}>ADD TO CART</Button>
     </div>
   );
 };
